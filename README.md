@@ -14,7 +14,7 @@ seaboen(0.13.2)
 torch（2.4.1）
 transformers（4.46.3）
 # Dataset
-This study employed four benchmark datasets from CPI research for model training and testing. All datasets were randomly partitioned into training, validation, and test sets at a ratio of 7:1:2.
+This study employed four benchmark datasets from CPI research for model training and testing. All datasets were randomly partitioned into training, validation, and test sets at a ratio of 7:1:2.Due to the large size of the generated data features, we have uploaded them to a cloud storage service for convenient downloading. The feature link is: https://pan.baidu.com/s/1q4AQrEZFbG1DgF2s1ixKFA?pwd=muja Extraction code: muja.You may also generate your own features.
 # Model
 The best model of different feature can be downloaded in model directory.
 # Contact

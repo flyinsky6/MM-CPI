@@ -1,0 +1,34 @@
+import torch
+import torch.nn as nn
+from torch.utils.data import Dataset, random_split, Subset
+from torch_geometric.data import Data
+from torch_geometric.loader import DataLoader
+from torch_geometric.nn import GCNConv, global_mean_pool
+from esm import pretrained
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from rdkit import Chem
+from sklearn.metrics import accuracy_score, precision_score, recall_score, roc_auc_score, f1_score
+from sklearn.model_selection import KFold
+from itertools import product
+from copy import deepcopy
+
+# =========================
+# 数据与特征函数（与你一致）
+# =========================
+def load_human_dataset(filepath):
+    compounds, proteins, labels = [], [], []
+    with open(filepath, 'r') as file:
+        for line in file:
+            parts = line.strip().split()
+            if len(parts) == 3:
+                compounds.append(parts[0])  # 化合物SMILES
+                proteins.append(parts[1])  # 蛋白质序列
+                labels.append(int(parts[2]))  # 标签（0或1）
+    return compounds, proteins, labels
+
+def smiles_to_graph(smiles):
+    mol = Chem.MolFromSmiles(smiles)
+    if mol is None:
+        return None
